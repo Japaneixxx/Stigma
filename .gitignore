@@ -32,10 +32,10 @@ build/
 ### VS Code ###
 .vscode/
 
-# Spring — perfis com segredos
-application-dev.properties
-application-prod.properties
-application-local.properties
+# Spring - perfis locais com segredos
+backend/src/main/resources/application-dev.properties
+backend/src/main/resources/application-local.properties
+!backend/src/main/resources/application-dev.example.properties
 
 # Variáveis de ambiente
 .env

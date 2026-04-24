@@ -16,8 +16,11 @@ public record LeadResponse(
         String description,
         String referenceImageUrl,
         BigDecimal quotedPrice,
-        String budgetNotes,
+        BigDecimal depositAmount,
+        String tattooistNotes,
         LeadStatus status,
         Instant createdAt,
         Instant updatedAt
-) {}
+        ) {
+
+}

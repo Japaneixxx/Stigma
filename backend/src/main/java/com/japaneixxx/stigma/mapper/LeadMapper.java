@@ -13,7 +13,7 @@ public interface LeadMapper {
     @Mapping(target = "tattooist", ignore = true)
     @Mapping(target = "status", ignore = true)
     @Mapping(target = "quotedPrice", ignore = true)
-    @Mapping(target = "budgetNotes", ignore = true)
+    @Mapping(target = "tattooistNotes", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     Lead toEntity(LeadRequest request);

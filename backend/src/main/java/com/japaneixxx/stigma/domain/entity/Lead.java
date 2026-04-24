@@ -3,6 +3,8 @@ package com.japaneixxx.stigma.domain.entity;
 import com.japaneixxx.stigma.domain.enums.LeadStatus;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -14,10 +16,15 @@ import java.util.UUID;
 @Entity
 @Table(name = "leads")
 @EntityListeners(AuditingEntityListener.class)
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Lead {
 
-    @Id @GeneratedValue(strategy = GenerationType.UUID)
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -51,11 +58,15 @@ public class Lead {
     @Column(name = "quoted_price", precision = 10, scale = 2)
     private BigDecimal quotedPrice;
 
+    @Column(name = "deposit_amount", precision = 10, scale = 2)
+    private BigDecimal depositAmount;
+
     @Column(name = "budget_notes", columnDefinition = "TEXT")
-    private String budgetNotes;
+    private String tattooistNotes;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "lead_status")
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Builder.Default
     private LeadStatus status = LeadStatus.NOVO;
 

@@ -33,7 +33,7 @@ CREATE TYPE appointment_status AS ENUM (
     'EXPIRADO'
 );
 
-CREATE TYPE day_of_week AS ENUM (
+CREATE TYPE day_of_week_type AS ENUM (
     'MONDAY',
     'TUESDAY',
     'WEDNESDAY',
@@ -73,7 +73,7 @@ CREATE TABLE tattooists (
 CREATE TABLE available_slots (
                                  id              UUID        PRIMARY KEY DEFAULT gen_random_uuid(),
                                  tattooist_id    UUID        NOT NULL REFERENCES tattooists(id) ON DELETE CASCADE,
-                                 day_of_week     day_of_week,              -- NULL se for pontual
+                                 day_of_week     day_of_week_type,              -- NULL se for pontual
                                  specific_date   DATE,                     -- NULL se for recorrente
                                  start_time      TIME        NOT NULL,
                                  end_time        TIME        NOT NULL,
