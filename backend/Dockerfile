@@ -10,7 +10,7 @@ COPY mvnw pom.xml ./
 RUN ./mvnw dependency:go-offline -B
 
 COPY src/ src/
-RUN ./mvnw package -DskipTests -B
+RUN ./mvnw package -DskipTests -B && cp target/*.jar app.jar
 
 # ─────────────────────────────────────────────
 #  Stage 2: runtime
@@ -19,8 +19,8 @@ FROM eclipse-temurin:21-jre-alpine
 
 WORKDIR /app
 
-COPY --from=builder /app/target/*.jar app.jar
+COPY --from=builder /app/app.jar app.jar
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-Dspring.profiles.active=prod", "-jar", "app.jar"]
