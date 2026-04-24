@@ -7,6 +7,11 @@ WORKDIR /app
 
 COPY .mvn/ .mvn/
 COPY mvnw pom.xml ./
+
+# Ensure the Maven Wrapper is executable in Linux containers (the Git exec bit
+# can be lost on some platforms / packaging workflows)
+RUN chmod +x mvnw
+
 RUN ./mvnw dependency:go-offline -B
 
 COPY src/ src/
